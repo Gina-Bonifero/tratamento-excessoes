@@ -50,14 +50,18 @@ public class Account {
 		balance += amount;
 	}
 	
-	public void withdraw(Double amount) throws AccountExceptions{
+	public void withdraw(Double amount) throws AccountExceptions {
+		validateWithdraw(amount);
+		balance -= amount;
+		System.out.println("New balance: " + getBalance());
+	}
+	
+	public void validateWithdraw(Double amount) throws AccountExceptions {
 		if (amount > withdrawLimit) {
-			throw new AccountExceptions("The amount axceeds withdraw limit");
+			throw new AccountExceptions("The amount exceeds withdraw limit");
 		}
 		if (amount > balance) {
 			throw new AccountExceptions("Not enough balance");
 		}
-		balance -= amount;
-		System.out.println("New balance: " + getBalance());
 	}
 }
